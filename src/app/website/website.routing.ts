@@ -39,295 +39,149 @@ import { QueryingView } from "./documentation/javascript-sdk/querying.view";
 import { AuthenticationView } from "./documentation/javascript-sdk/authentication.view";
 import { AuthorizationView } from "./documentation/javascript-sdk/authorization.view";
 import { AccessPointsView } from "./documentation/javascript-sdk/access-points.view";
+import websiteMetadata from  "./website.routing.json!";
 
-
-const websiteRoutes:Routes = [
-	{
-		path: "",
-		component: WebsiteView,
-		data: {
-			title: false,
-		},
-		children: [
-			{
-				path: "",
-				component: HomeView,
-				data: {
-					title: "Home",
-					description: {
-						name: "description",
-						content: "Carbon LDP is a Linked Data Platform for building web apps that manage and link data within your enterprise and across the World Wide Web.",
-					},
+// Object that contains ONLY the components tree of website routes.
+const websiteRoutesWithOutMetadata = {
+		"": {
+			"component": WebsiteView,
+			"children": {
+				"": {
+					"component": HomeView,
 				},
-			},
-			{
-				path: "community-and-support",
-				component: CommunityAndSupportView,
-				data: {
-					title: "Community &amp; Support",
+				"community-and-support": {
+					"component": CommunityAndSupportView,
 				},
-			},
-			{
-				path: "get-started",
-				component: GetStartedView,
-				data: {
-					title: "Get Started",
+				"get-started": {
+					"component": GetStartedView,
+				}, "about": {
+					"component": AboutCarbonLDPView,
 				},
-			},
-			{
-				path: "about",
-				component: AboutCarbonLDPView,
-				data: {
-					title: "About",
-					description: {
-						name: "description",
-						content: "Carbon LDP is a Linked Data Platform for building web apps that manage and link data within your enterprise and across the World Wide Web.",
-					}
+				"register": {
+					"component": RegisterView,
 				},
-			},
-			{
-				path: "register",
-				component: RegisterView,
-				data: {
-					title: "Register"
+				"signup-thanks": {
+					"component": SignupThanksView,
 				},
-			},
-			{
-				path: "signup-thanks",
-				component: SignupThanksView,
-				data: {
-					title: "Thank you"
+				"ui-examples": {
+					"component": UIExamplesView,
 				},
-			},
-			{
-				path: "ui-examples",
-				component: UIExamplesView,
-				data: {
-					title: "UI Examples"
+				"license": {
+					"component": LicenseView,
 				},
-			},
-			{
-				path: "license",
-				component: LicenseView,
-				data: {
-					title: "License"
-				},
-			},
-			{
-				path: "documentation",
-				component: DocumentationView,
-				data: {
-					title: false,
-				},
-				children: [
-					{
-						path: "",
-						component: DocumentationHomeView,
-						data: {
-							title: "Documentation",
-							description: {
-								name: "description",
-								content: "Find all documents related to Carbon, from the basics concepts of Linked Data to the GUI.",
+				"documentation": {
+					"component": DocumentationView,
+					"children": {
+						"": {
+							"component": DocumentationHomeView,
+						},
+						"quick-start-guide": {
+							"component": QuickStartGuideView,
+						},
+						"essential-concepts": {
+							"component": EssentialConceptsView,
+						},
+						"linked-data-concepts": {
+							"component": LinkedDataConceptsView,
+						},
+						"rest-api": {
+							"component": RESTApiView,
+						},
+						"rest-api-getting-started": {
+							"component": GettingStartedView,
+						},
+						"rest-api-interaction-models": {
+							"component": InteractionModelsView,
+						},
+						"rest-api-object-model": {
+							"component": ObjectModelView,
+						},
+						"rest-api-containers": {
+							"component": ContainersView,
+						},
+						"rest-api-rdf-source": {
+							"component": RDFSourceView,
+						},
+						"javascript-sdk": {
+							"component": JavaScriptSDKView,
+							"children": {
+								"": {
+									"component": JavaScriptSDKHomeView,
+								},
+								"getting-started": {
+									"component": JavaScriptSDKGettingStartedView,
+								},
+								"contexts": {
+									"component": ContextsView,
+								},
+								"object-model": {
+									"component": JavaScriptSDKObjectModelView,
+								},
+								"object-schema": {
+									"component": ObjectSchemaView,
+								},
+								"files": {
+									"component": UploadingFilesView,
+								}
+								,
+								"querying": {
+									"component": QueryingView,
+								},
+								"authentication": {
+									"component": AuthenticationView,
+								},
+								"authorization": {
+									"component": AuthorizationView,
+								},
+								"access-points": {
+									"component": AccessPointsView,
+								}
 							}
 						}
-					},
-					{
-						path: "quick-start-guide",
-						component: QuickStartGuideView,
-						data: {
-							title: "Quick Start Guide",
-							description: {
-								name: "description",
-								content: "Quick start instructions to help you get up and running everything you need to work with CarbonLDP.",
-							}
-						}
-					},
-					{
-						path: "essential-concepts",
-						component: EssentialConceptsView,
-						data: {
-							title: "Essential Concepts",
-							description: {
-								name: "description",
-								content: "Basic Linked Data knowledge. Helpful documentation for a general overview of Linked Data.",
-							}
-						},
-					},
-					{
-						path: "linked-data-concepts",
-						component: LinkedDataConceptsView,
-						data: {
-							title: "Linked Data Concepts",
-							description: {
-								name: "description",
-								content: "General overview of the basic idea behind Linked Data and why it can make your applications more powerful.",
-							}
-						},
-					},
-					{
-						path: "rest-api",
-						component: RESTApiView,
-						data: {
-							title: "REST API",
-							description: {
-								name: "description",
-								content: "Access and manage applications and data by URIs using RESTful requests over HTTP. Configure apps, schedule server-side jobs, execute queries - everything in Carbon is RESTful.",
-							}
-						},
-					},
-					{
-						path: "rest-api-getting-started",
-						component: GettingStartedView,
-						data: {
-							title: "Getting Started with REST API",
-							description: {
-								name: "description",
-								content: "Guide to get you started. How to build an example application using the Carbon LDP REST API.",
-							}
-						},
-					},
-					{
-						path: "rest-api-interaction-models",
-						component: InteractionModelsView,
-						data: {
-							title: "Interaction Models",
-							description: {
-								name: "description",
-								content: "An explanation of the way you can interact with the resources on the Carbon Server.",
-							}
-						},
-					},
-					{
-						path: "rest-api-object-model",
-						component: ObjectModelView,
-						data: {
-							title: "REST API Object Model",
-							description: {
-								name: "description",
-								content: "A summary of the various types of resources you can manage and interact with using REST.",
-							}
-						},
-					},
-					{
-						path: "rest-api-containers",
-						component: ContainersView,
-						data: {
-							title: "Containers",
-						},
-					},
-					{
-						path: "rest-api-rdf-source",
-						component: RDFSourceView,
-						data: {
-							title: "RDF Source",
-						},
-					},
-					{
-						path: "javascript-sdk",
-						component: JavaScriptSDKView,
-						data: {
-							title: false
-						},
-						children: [
-							{
-								path: "",
-								component: JavaScriptSDKHomeView,
-								data: {
-									title: "JavaScript SDK",
-									description: {
-										name: "description",
-										content: "The JavaScript Software Developer's Kit, available from the npm package manager, allows you to manage RDF data using familiar JavaScript and TypeScript programming techniques and tools. Build for execution within a web browser or Node.js.",
-									}
-								},
-							},
-							{
-								path: "getting-started",
-								component: JavaScriptSDKGettingStartedView,
-								data: {
-									title: "Getting Started with JavaScript SDK",
-									description: {
-										name: "description",
-										content: "Guide to install Carbon JavaScriptSDK and start creating and manipulating data with its basic methods.",
-									}
-								},
-							},
-							{
-								path: "contexts",
-								component: ContextsView,
-								data: {
-									title: "Contexts",
-									description: {
-										name: "description",
-										content: "What is a context in Carbon JS SDK, how to declare, access and modify it.",
-									}
-								},
-							},
-							{
-								path: "object-model",
-								component: JavaScriptSDKObjectModelView,
-								data: {
-									title: "JavaScript SDK Object Model",
-									description: {
-										name: "description",
-										content: "An in depth description of the Carbon Object Model.",
-									}
-								},
-							},
-							{
-								path: "object-schema",
-								component: ObjectSchemaView,
-								data: {
-									title: "Object Schema",
-									description: {
-										name: "description",
-										content: "What is the object schema, how to define and use it.",
-									}
-								},
-							},
-							{
-								path: "files",
-								component: UploadingFilesView,
-								data: {
-									title: "Uploading Files",
-									description: "How to upload, download and describe files",
-								},
-							},
-							{
-								path: "querying",
-								component: QueryingView,
-								data: {
-									title: "Querying",
-								},
-							},
-							{
-								path: "authentication",
-								component: AuthenticationView,
-								data: {
-									title: "Authentication",
-									description: "Logging in, logging out and everything you need to know about it"
-								},
-							},
-							{
-								path: "authorization",
-								component: AuthorizationView,
-								data: {
-									title: "Authorization",
-									description: "Granting or denying permissions to subjects on documents"
-								},
-							},
-							{
-								path: "access-points",
-								component: AccessPointsView,
-								data: {
-									title: "Access Points",
-								},
-							},
-						]
 					}
-				]
+				}
 			}
-		]
+		}
+	};
+
+let routes = ( ()=>{
+	// Process and refactor websiteMetadata and websiteRoutesWithOutMetadata, to automatically generate complete website routes.
+	function refactorJSON(components,metadata){
+
+		// merge both JSON objects
+	let refactoredJSON = metadata;// Copying metadata to a new Object
+
+	for (let attributeName of Object.keys( components )) {
+		if(refactoredJSON.hasOwnProperty(attributeName)) {
+			if ( components[attributeName] !== null && typeof components[attributeName] === "object" ) {
+
+				// Add path attribute in the appropriate place
+				if( attributeName!=="component" && attributeName!=="children") refactoredJSON[attributeName]["path"]= attributeName;
+
+				// Recursive call if nested object is found
+				refactoredJSON[attributeName] = refactorJSON(components[attributeName], refactoredJSON[attributeName]);
+
+				// Convert children object into an array
+				// TODO: Could use Object.values( refactoredJSON[attributeName] ) once the method is not in experimental phase.
+				if( attributeName ==="children" ) refactoredJSON[attributeName] = Object.keys(refactoredJSON[attributeName]).map(function(k){return refactoredJSON[attributeName][k];});
+			}
+
+		} else {//else copy the property from components
+			refactoredJSON[attributeName] = components[attributeName];
+		}
 	}
-];
+
+	return refactoredJSON;
+	}
+
+	let JSONroutes = refactorJSON(websiteRoutesWithOutMetadata,websiteMetadata);
+	// Convert routes first level Object into an array
+	let routes = Object.keys(JSONroutes).map(function(k){return JSONroutes[k];});
+
+	return routes;
+
+})();
+
+const websiteRoutes:Routes = routes;
 
 export const routing:ModuleWithProviders = RouterModule.forChild( websiteRoutes );

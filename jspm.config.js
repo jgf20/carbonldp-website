@@ -65,6 +65,7 @@ SystemJS.config({
     "https": "npm:jspm-nodelibs-https@0.2.1",
     "jquery": "npm:jquery@2.2.4",
     "js-cookie": "npm:js-cookie@2.1.3",
+    "json": "github:systemjs/plugin-json@0.2.2",
     "jstree": "npm:jstree@3.3.2",
     "os": "npm:jspm-nodelibs-os@0.2.0",
     "path": "npm:jspm-nodelibs-path@0.2.0",
